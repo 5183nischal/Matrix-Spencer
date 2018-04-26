@@ -19,7 +19,7 @@ def min_search(N):
 		vec = []
 		for j in range (N):
 			#temp = random.uniform(0,1)
-			temp = random.choice([1])
+			temp = random.choice([0,1])
 			vec.append(temp)
 		d=np.diag(vec)
 
@@ -70,15 +70,20 @@ def min_search(N):
 
 	return(min(norm_val))
 
-N =12
-global_min = 0
-for i in range(10000):
-	random_min = min_search(N)
-	#searching largest among the minimum
-	if random_min > global_min:
-		global_min = random_min
 
-print(global_min)
+spencer_lhs = []
+for N in range(2,10):
+	global_min = 0
+	for i in range(5000):
+		random_min = min_search(N)
+		#searching largest among the minimum
+		if random_min > global_min:
+			global_min = random_min
+	spencer_lhs.append(global_min)
+
+for i in range(len(spencer_lhs)):
+	#print (i+2,"  =>  ", spencer_lhs[i]/((i+2)**0.5) )
+	print (i+2,"  =>  ", spencer_lhs[i])
 
 
 
